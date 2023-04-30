@@ -3,7 +3,8 @@ from sqlalchemy import create_engine, select, insert, update, delete, func
 from sqlalchemy.orm import Session, sessionmaker, class_mapper
 from utils.models import *
 
-def main():
+
+def session():
     print("Версия SQL Alchemy:", sqlalchemy.__version__)
 
     engine = create_engine(
@@ -18,8 +19,10 @@ def main():
 
     Session = sessionmaker(bind=engine)
     session = Session()
-    BASE.metadata.create_all(engine)
+    # BASE.metadata.create_all(engine)
+
+    return Session
 
 
 if __name__ == "__main__":
-    main()
+    session()

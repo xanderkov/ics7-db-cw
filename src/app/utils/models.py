@@ -27,8 +27,8 @@ class Camera(BASE):
     cam_type = Column(Text)
 
 
-class CameraVisiotor(BASE):
-    __tablename__ = 'CameraVisiotor'
+class CameraVisitor(BASE):
+    __tablename__ = 'CameraVisitor'
 
     id_vis = Column(Integer, ForeignKey('Visitor.id'), primary_key=True)
     id_cam = Column(Integer, ForeignKey('Camera.id'), primary_key=True)
@@ -40,8 +40,7 @@ class Shelf(BASE):
     id = Column(Integer, primary_key=True)
     location = Column(Text)
     length = Column(Float)
-    
-    
+
 
 class ShelfVisitor(BASE):
     __tablename__ = 'ShelfVisitor'
@@ -61,12 +60,12 @@ class Product(BASE):
     status = Column(Integer)
     price = Column(Integer)
 
+
 class ShelfProduct(BASE):
     __tablename__ = 'ShelfProduct'
     
     id_shelf = Column(Integer, ForeignKey('Shelf.id'), primary_key=True)
     id_product = Column(Integer, ForeignKey('Product.id'), primary_key=True)
-
 
 
 class ChainStore(BASE):
