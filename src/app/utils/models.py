@@ -56,7 +56,7 @@ class Product(BASE):
     name = Column(Text)
     location = Column(Text)
     dataEnd = Column(Date)
-    wieght = Column(Float)
+    weight = Column(Float)
     status = Column(Integer)
     price = Column(Integer)
 
@@ -75,6 +75,6 @@ class ChainStore(BASE):
     name = Column(Text)
     location = Column(Text)
     nameDir = Column(Text)
-    inclome = Column(Float)
+    income = Column(Float)
     consumption = Column(Float)
 

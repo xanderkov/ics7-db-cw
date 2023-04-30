@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session, sessionmaker, class_mapper
 from utils.models import *
 
 
-def session():
+def create_session():
     print("Версия SQL Alchemy:", sqlalchemy.__version__)
 
     engine = create_engine(
@@ -18,11 +18,19 @@ def session():
         return
 
     Session = sessionmaker(bind=engine)
-    session = Session()
+    db = Session()
     # BASE.metadata.create_all(engine)
 
-    return Session
+    return db
+
+
+def get_db():
+    db = create_session()
+    try:
+        yield db
+    finally:
+        db.close()
 
 
 if __name__ == "__main__":
-    session()
+    create_session()
