@@ -1,6 +1,7 @@
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
-from sqlalchemy import Column, Integer, ForeignKey, Text, Double, Date
+from sqlalchemy import Column, Integer, ForeignKey, Text, Date
+from sqlalchemy.types import Float
 from sqlalchemy import PrimaryKeyConstraint
 
 BASE = declarative_base()
@@ -29,23 +30,24 @@ class Camera(BASE):
 class CameraVisiotor(BASE):
     __tablename__ = 'CameraVisiotor'
 
-    id_vis = Column(Integer, ForeignKey('visitor.id'), primary_key=True)
-    id_cam = Column(Integer, ForeignKey('camera.id'), primary_key=True)
+    id_vis = Column(Integer, ForeignKey('Visitor.id'), primary_key=True)
+    id_cam = Column(Integer, ForeignKey('Camera.id'), primary_key=True)
 
 
 class Shelf(BASE):
     __tablename__ = 'Shelf'
     
+    id = Column(Integer, primary_key=True)
     location = Column(Text)
-    length = Column(Double)
+    length = Column(Float)
     
     
 
 class ShelfVisitor(BASE):
     __tablename__ = 'ShelfVisitor'
     
-    id_shelf = Column(Integer, ForeignKey('shelf.id'), primary_key=True)
-    id_cam = Column(Integer, ForeignKey('camera.id'), primary_key=True)
+    id_shelf = Column(Integer, ForeignKey('Shelf.id'), primary_key=True)
+    id_cam = Column(Integer, ForeignKey('Camera.id'), primary_key=True)
     
 
 class Product(BASE):
@@ -55,15 +57,15 @@ class Product(BASE):
     name = Column(Text)
     location = Column(Text)
     dataEnd = Column(Date)
-    wieght = Column(Double)
+    wieght = Column(Float)
     status = Column(Integer)
     price = Column(Integer)
 
 class ShelfProduct(BASE):
     __tablename__ = 'ShelfProduct'
     
-    id_shelf = Column(Integer, ForeignKey('shelf.id'), primary_key=True)
-    id_product = Column(Integer, ForeignKey('product.id'), primary_key=True)
+    id_shelf = Column(Integer, ForeignKey('Shelf.id'), primary_key=True)
+    id_product = Column(Integer, ForeignKey('Product.id'), primary_key=True)
 
 
 
@@ -74,5 +76,6 @@ class ChainStore(BASE):
     name = Column(Text)
     location = Column(Text)
     nameDir = Column(Text)
-    inclome = Column(Double)
-    consumption = Column(Double)
+    inclome = Column(Float)
+    consumption = Column(Float)
+
