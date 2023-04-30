@@ -1,0 +1,21 @@
+version: '3.3'
+
+services:
+  postgres:
+    image: postgres
+    container_name: postgres-shop
+    environment:
+      POSTGRES_PASSWORD: postgres
+      PG_PASSWORD: postgres
+      POSTGRES_DB: shop
+    volumes:
+    - ./data:/var/lib/postgresql/data
+    ports:
+      - "6432:5432"
+    networks:
+    - my_persistent_network
+
+
+networks:
+  my_persistent_network:
+    driver: bridge
