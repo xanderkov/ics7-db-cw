@@ -38,7 +38,7 @@ class CameraVisitorSchema(BaseModel):
         arbitrary_types_allowed = True
 
 
-class Shelf(BaseModel):
+class ShelfSchema(BaseModel):
     id: int | None = None
     location: str | None = None
     length: float | None = None
@@ -59,7 +59,7 @@ class ShelfVisitorSchema(BaseModel):
         arbitrary_types_allowed = True
 
 
-class Product(BaseModel):
+class ProductSchema(BaseModel):
     id: int | None = None
     name: str | None = None
     location: str | None = None
