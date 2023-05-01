@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session, sessionmaker, class_mapper
 from utils.models import *
 
 
-def create_session():
+def create_session(recreate=False):
     print("Версия SQL Alchemy:", sqlalchemy.__version__)
 
     engine = create_engine(
@@ -14,12 +14,14 @@ def create_session():
         engine.connect()
         print("БД  успешно подключена!")
     except:
-        print("Ошибка соединения к БД!")
+        print("Ошибка соединения c БД!")
         return
 
     Session = sessionmaker(bind=engine)
     db = Session()
-    # BASE.metadata.create_all(engine)
+
+    if recreate:
+        BASE.metadata.create_all(engine)
 
     return db
 
@@ -33,4 +35,5 @@ def get_db():
 
 
 if __name__ == "__main__":
-    create_session()
+    create_session(True)
+

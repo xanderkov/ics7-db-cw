@@ -2,7 +2,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, ForeignKey, Text, Date
 from sqlalchemy.types import Float
-from sqlalchemy import PrimaryKeyConstraint
+from sqlalchemy import PrimaryKeyConstraint, Identity
 
 BASE = declarative_base()
 
@@ -10,7 +10,7 @@ BASE = declarative_base()
 class Visitor(BASE):
     __tablename__ = 'Visitor'
     
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, Identity(always=True), primary_key=True)
     description = Column(Text)
     location = Column(Text)
     view = Column(Text)
@@ -20,7 +20,7 @@ class Visitor(BASE):
 class Camera(BASE):
     __tablename__ = 'Camera'
     
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, Identity(always=True), primary_key=True)
     location = Column(Text)
     resolution = Column(Text)
     rotation = Column(Text)
@@ -37,7 +37,7 @@ class CameraVisitor(BASE):
 class Shelf(BASE):
     __tablename__ = 'Shelf'
     
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, Identity(always=True), primary_key=True)
     location = Column(Text)
     length = Column(Float)
 
@@ -52,7 +52,7 @@ class ShelfVisitor(BASE):
 class Product(BASE):
     __tablename__ = 'Product'
     
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, Identity(always=True), primary_key=True)
     name = Column(Text)
     location = Column(Text)
     dataEnd = Column(Date)
@@ -71,7 +71,7 @@ class ShelfProduct(BASE):
 class ChainStore(BASE):
     __tablename__ = 'ChainStore'
     
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, Identity(always=True), primary_key=True)
     name = Column(Text)
     location = Column(Text)
     nameDir = Column(Text)
