@@ -1,13 +1,93 @@
-\section{Экспериментальная часть}
+\section{Исследовательская часть}
 
-В данном разделе
+В данном разделе произведено постановка задачи исследования и представлены
+результаты данного исследования.
 
 \subsection{Технические характеристики}
-Тестирование выполнялось на устройстве со следующими техническими характеристиками:
+Тестирование выполнялось на устройстве со следующими техническими
+характеристиками:
 \begin{itemize}
-	\item Операционная система Pop!\_OS 22.04 LTS \cite{popos} Linux \cite{Linux};
-	\item Оперативная память 16 Гбайт;
-	\item Процессор AMD® Ryzen 7 2700 eight-core processor × 16 \cite{amd}.
+	\item операционная система Pop!\_OS 22.04 LTS \cite{popos} Linux
+	      \cite{Linux};
+	\item оперативная память 16 Гбайт;
+	\item процессор AMD® Ryzen 7 2700 eight-core processor × 16 \cite{amd}.
 \end{itemize}
 
-\subsection{Результаты разработки}
+\subsection{Постановка исследования}
+
+Целью является исследование времени обработки операции от количества запросов в
+СУБД.
+
+\subsection{Результаты исследования}
+
+В таблице \ref{tab:time1} продемонстрировано пользовательское время программы
+при разном глубине рекурсии.
+
+\begin{table}[ht!]
+	\begin{center}
+
+		\caption{Пользовательское время работы программы при разном
+			количестве
+			полей в таблице}
+		\label{tab:time1}
+		\begin{tabular}{|c|c|}
+			\hline
+			Количетво полей & Время в с. \\
+			\hline
+			100             & 0.006      \\
+			\hline
+			1000            & 0.009      \\
+			\hline
+			10000           & 0.097      \\
+			\hline
+			100000          & 1.170      \\
+			\hline
+			1000000         & 11.118     \\
+			\hline
+
+		\end{tabular}
+	\end{center}
+\end{table}
+\newpage
+На рисунке \ref{graph:r} представлено время запроса к БД.
+
+\begin{figure}[ht!]
+	\begin{center}
+		\captionsetup{singlelinecheck = false,
+			justification=centerfirst}
+		\begin{tikzpicture}
+			\begin{axis}[
+					xlabel={Количетво полей},
+					ylabel={время, с},
+					width = 0.95\textwidth,
+					height=0.3\textheight,
+					xmin=0, xmax=100000,
+					legend pos=north west,
+					xmajorgrids=true,
+					grid style=dashed,
+				]
+				\addplot[
+					blue,
+					semithick,
+					mark = x,
+					mark size = 3pt,
+					thick,
+				] file {assets/code/time.dat};
+
+				\legend{
+					Время работы программы
+				}
+			\end{axis}
+		\end{tikzpicture}
+		\centering
+		\caption{Результаты время запроса к БД}
+		\label{graph:r}
+	\end{center}
+\end{figure}
+
+Из результатов исследования можно сделать вывод, что зависимость времени запроса от количества полей линейно.
+
+\subsection*{Вывод}
+
+В данном разделе постановлена задачи исследования и представлены результаты
+данного исследования.

@@ -5,7 +5,7 @@ from utils.schemas import *
 from session import create_session, get_db
 import uvicorn
 from sqlalchemy.orm import Session
-
+import time
 
 app = FastAPI()
 
@@ -20,21 +20,21 @@ def get_all_cameras(db: Session = Depends(get_db), limit: int = 10, page: int = 
 
 
 @app.get("/CameraVisitor")
-def get_all_cameras(db: Session = Depends(get_db), limit: int = 10, page: int = 1):
+def get_all_CameraVisitor(db: Session = Depends(get_db), limit: int = 10, page: int = 1):
     skip = (page - 1) * limit
     cameraVisitor = db.query(CameraVisitor).limit(limit).offset(skip).all()
     return {'status': 'success', 'results': len(cameraVisitor), 'cameraVisitor': cameraVisitor}
 
 
 @app.get("/ShelfProduct")
-def get_all_cameras(db: Session = Depends(get_db), limit: int = 10, page: int = 1):
+def get_all_ShelfProduct(db: Session = Depends(get_db), limit: int = 10, page: int = 1):
     skip = (page - 1) * limit
     ShelfProduct = db.query(ShelfProduct).limit(limit).offset(skip).all()
     return {'status': 'success', 'results': len(ShelfProduct), 'ShelfProduct': ShelfProduct}
 
 
 @app.get("/ChainStore")
-def get_all_cameras(db: Session = Depends(get_db), limit: int = 10, page: int = 1):
+def get_all_ChainStore(db: Session = Depends(get_db), limit: int = 10, page: int = 1):
     skip = (page - 1) * limit
     ChainStore = db.query(ChainStore).limit(limit).offset(skip).all()
     return {'status': 'success', 'results': len(ChainStore), 'ChainStore': ChainStore}
@@ -56,8 +56,13 @@ def get_all_shelves(db: Session = Depends(get_db), limit: int = 10, page: int = 
 
 @app.get("/visitor")
 def get_all_visitors(db: Session = Depends(get_db), limit: int = 10, page: int = 1):
+    start = time.time()
+
     skip = (page - 1) * limit
     visitors = db.query(Visitor).limit(limit).offset(skip).all()
+
+    end = time.time()
+    print(end - start)
     return {'status': 'success', 'results': len(visitors), 'visitors': visitors}
 
 

@@ -12,7 +12,7 @@
 PostgreSQL \cite{postgresql} и SQLite \cite{sqlite}.
 Рассмотрим особенности каждой из них.
 
-\begin{enumerate}
+\begin{enumerate}[label=\arabic*.]
     \item MySQL. Среди достоинств данной СУБД можно выделить высокую
           безопасность и масштабируемость,
           поддержку большей части функционала SQL. Однако, несмотря на
@@ -37,11 +37,11 @@ PostgreSQL \cite{postgresql} и SQLite \cite{sqlite}.
 \subsection{Требования к программе}
 
 Программное обеспечение должно удовлетворять следующим требованиям:
-\begin{itemize}
+\begin{enumerate}[label=\arabic*.]
     \item возможно подключение к бд;
     \item программа позволяет определять время запросов;
     \item возможно создание программного интерфейса для работы с бд.
-\end{itemize}
+\end{enumerate}
 
 \subsection{Средства реализации}
 
@@ -148,11 +148,11 @@ $$ LANGUAGE plpgsql;
 
 В конструкторском разделе была разработана ролевая модель, в которой выделены
 следующие роли:
-\begin{itemize}
+\begin{enumerate}[label=\arabic*.]
     \item employee --- сотрудник;
     \item security --- охрана;
     \item administrator --- администратор.
-\end{itemize}
+\end{enumerate}
 
 Соответствующий этой ролевой модели сценарий создания ролей и выделения им прав
 представлен на листинге \ref{roles}.
@@ -193,7 +193,7 @@ GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO administrator;
 \end{figure}
 \FloatBarrier
 
-\subsection{Вывод из раздела}
+\subsection*{Вывод}
 
 В данном разделе выбраны СУБД и средств реализации, описано создание БД,
 триггера, ролей с выделением прав.
