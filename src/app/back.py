@@ -19,6 +19,27 @@ def get_all_cameras(db: Session = Depends(get_db), limit: int = 10, page: int = 
     return {'status': 'success', 'results': len(cameras), 'cameras': cameras}
 
 
+@app.get("/CameraVisitor")
+def get_all_cameras(db: Session = Depends(get_db), limit: int = 10, page: int = 1):
+    skip = (page - 1) * limit
+    cameraVisitor = db.query(CameraVisitor).limit(limit).offset(skip).all()
+    return {'status': 'success', 'results': len(cameraVisitor), 'cameraVisitor': cameraVisitor}
+
+
+@app.get("/ShelfProduct")
+def get_all_cameras(db: Session = Depends(get_db), limit: int = 10, page: int = 1):
+    skip = (page - 1) * limit
+    ShelfProduct = db.query(ShelfProduct).limit(limit).offset(skip).all()
+    return {'status': 'success', 'results': len(ShelfProduct), 'ShelfProduct': ShelfProduct}
+
+
+@app.get("/ChainStore")
+def get_all_cameras(db: Session = Depends(get_db), limit: int = 10, page: int = 1):
+    skip = (page - 1) * limit
+    ChainStore = db.query(ChainStore).limit(limit).offset(skip).all()
+    return {'status': 'success', 'results': len(ChainStore), 'ChainStore': ChainStore}
+
+
 @app.get("/product")
 def get_all_products(db: Session = Depends(get_db), limit: int = 10, page: int = 1):
     skip = (page - 1) * limit
@@ -49,6 +70,33 @@ def create_visitor(payload: VisitorSchema, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(new_visitor)
     return {"status": "success", "visitor": new_visitor}
+
+
+@app.post("/CameraVisitor", status_code=status.HTTP_201_CREATED)
+def create_CameraVisitor(payload: CameraVisitorSchema, db: Session = Depends(get_db)):
+    new_CameraVisitor = CameraVisitor(**payload.dict())
+    db.add(new_CameraVisitor)
+    db.commit()
+    db.refresh(new_CameraVisitor)
+    return {"status": "success", "CameraVisitor": new_CameraVisitor}
+
+
+@app.post("/ShelfProduct", status_code=status.HTTP_201_CREATED)
+def create_ShelfProduct(payload: ShelfProductSchema, db: Session = Depends(get_db)):
+    new_ShelfProduct = ShelfProduct(**payload.dict())
+    db.add(new_ShelfProduct)
+    db.commit()
+    db.refresh(new_ShelfProduct)
+    return {"status": "success", "ShelfProduct": new_ShelfProduct}
+
+
+@app.post("/ChainStore", status_code=status.HTTP_201_CREATED)
+def create_ChainStore(payload: ChainStoreSchema, db: Session = Depends(get_db)):
+    new_ChainStore = ChainStore(**payload.dict())
+    db.add(new_ChainStore)
+    db.commit()
+    db.refresh(new_ChainStore)
+    return {"status": "success", "ChainStore": new_ChainStore}
 
 
 @app.post("/camera", status_code=status.HTTP_201_CREATED)
