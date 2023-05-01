@@ -77,41 +77,21 @@
 
 \usepackage{listings}
 \lstset{
+	language=python, % выбор языка для подсветки
 	basicstyle=\footnotesize\ttfamily,
-	language=[Sharp]C, % Или другой ваш язык -- см. документацию пакета
-	commentstyle=\color{comment},
-	numbers=left,
-	numberstyle=\tiny\color{plain},
-	numbersep=5pt,
-	tabsize=4,
-	extendedchars=\true,
+	numbers=left, % где поставить нумерацию строк (слева\справа)
+	%numberstyle=, % размер шрифта для номеров строк
+	stepnumber=1, % размер шага между двумя номерами строк
+	numbersep=5pt, % как далеко отстоят номера строк от подсвечиваемого кода
+	frame=single, % рисовать рамку вокруг кода
+	tabsize=2, % размер табуляции по умолчанию равен 4 пробелам
+	captionpos=t, % позиция заголовка вверху [t] или внизу [b]
 	breaklines=true,
-	keywordstyle=\color{blue},
-	frame=b,
-	stringstyle=\ttfamily\color{string}\ttfamily,
-	showspaces=false,
-	showtabs=false,
-	xleftmargin=17pt,
-	framexleftmargin=17pt,
-	framexrightmargin=5pt,
-	framexbottommargin=4pt,
-	showstringspaces=false,
-	inputencoding=utf8x,
-	keepspaces=true
+	breakatwhitespace=true, % переносить строки только если есть пробел
+	backgroundcolor=\color{white},
+	keywordstyle=\color{blue}
 }
 
-\DeclareCaptionLabelSeparator{line}{\ --\ }
-\DeclareCaptionFont{white}{\color{white}}
-\DeclareCaptionFormat{listing}{\colorbox[cmyk]{0.43,0.35,0.35,0.01}{\parbox{\textwidth}{\hspace{15pt}#1#2#3}}}
-\captionsetup[lstlisting]{
-	format=listing,
-	labelfont=white,
-	textfont=white,
-	singlelinecheck=false,
-	margin=0pt,
-	font={bf,footnotesize},
-	labelsep=line
-}
 
 \usepackage{ulem} % Нормальное нижнее подчеркивание
 \usepackage{hhline} % Двойная горизонтальная линия в таблицах
@@ -173,3 +153,7 @@
 \usepackage[final]{pdfpages}
 
 \usepackage{placeins}
+\usepackage{listings}
+
+
+
