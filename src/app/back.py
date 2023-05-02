@@ -235,5 +235,37 @@ def delete_product(productId: str, db: Session = Depends(get_db)):
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 
+# Интересные запросы
+
+@app.get("/what_camera_see")
+def what_camera_see(db: Session = Depends(get_db), cam_id: int = 1):
+    what_camera_see = db.query(Visitor
+                               ).filter(Camera.id == CameraVisitor.id_cam
+                               ).filter(CameraVisitor.id_vis == Visitor.id
+                               ).filter(Camera.id == cam_id).all()
+    return {'status': 'success', 'results': len(what_camera_see), 'what_camera_see': what_camera_see}
+
+
+@app.get("/on_whick_camera_visitor")
+def on_whick_camera_visitor(db: Session = Depends(get_db), vis_id: int = 1):
+    on_whick_camera_visitor = db.query(Camera
+                               ).filter(Camera.id == CameraVisitor.id_cam
+                               ).filter(CameraVisitor.id_vis == Visitor.id
+                               ).filter(Visitor.id == vis_id).all()
+    return {'status': 'success', 'results': len(on_whick_camera_visitor), 'on_whick_camera_visitor': on_whick_camera_visitor}
+
+
+@app.get("/shelf_sum")
+def shelf_sum(db: Session = Depends(get_db), shelf_id: int = 1):
+    result = db.query(Product.price
+                               ).filter(Shelf.id == ShelfProduct.id_shelf
+                               ).filter(ShelfProduct.id_product == Product.id
+                               ).filter(Shelf.id == shelf_id).all()
+    product_sum = 0
+    for r in result:
+        product_sum += r.price
+    return {'status': 'success', 'shelf_sum': product_sum}
+
+
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8080)

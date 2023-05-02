@@ -145,7 +145,7 @@ def copy_to_database():
 
     cursor = conn.cursor()
 
-    os.system("sudo cp -rf tables/ /home/akovel/Documents/bmstu/ics7-db-cw/src/data/PGDATA/csv_tables/")
+    os.system("sudo cp -rf ../tables/ /home/xander/Documents/bmstu/ics7-db-cw/src/data/PGDATA/csv_tables/")
     cursor.execute(open("../scripts/copy_from_csv.sql", "r").read())
 
     conn.commit()

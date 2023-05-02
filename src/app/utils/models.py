@@ -46,7 +46,7 @@ class ShelfVisitor(BASE):
     __tablename__ = 'ShelfVisitor'
     
     id_shelf = Column(Integer, ForeignKey('Shelf.id'), primary_key=True)
-    id_cam = Column(Integer, ForeignKey('Camera.id'), primary_key=True)
+    id_vis = Column(Integer, ForeignKey('Visitor.id'), primary_key=True)
     
 
 class Product(BASE):
