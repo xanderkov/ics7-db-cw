@@ -12,49 +12,49 @@ app = FastAPI()
 # Read
 
 
-@app.get("/camera")
+@app.get("/camera_read")
 def get_all_cameras(db: Session = Depends(get_db), limit: int = 10, page: int = 1):
     skip = (page - 1) * limit
     cameras = db.query(Camera).limit(limit).offset(skip).all()
     return {'status': 'success', 'results': len(cameras), 'cameras': cameras}
 
 
-@app.get("/CameraVisitor")
+@app.get("/CameraVisitor_read")
 def get_all_CameraVisitor(db: Session = Depends(get_db), limit: int = 10, page: int = 1):
     skip = (page - 1) * limit
     cameraVisitor = db.query(CameraVisitor).limit(limit).offset(skip).all()
     return {'status': 'success', 'results': len(cameraVisitor), 'cameraVisitor': cameraVisitor}
 
 
-@app.get("/ShelfProduct")
+@app.get("/ShelfProduct_read")
 def get_all_ShelfProduct(db: Session = Depends(get_db), limit: int = 10, page: int = 1):
     skip = (page - 1) * limit
     ShelfProduct = db.query(ShelfProduct).limit(limit).offset(skip).all()
     return {'status': 'success', 'results': len(ShelfProduct), 'ShelfProduct': ShelfProduct}
 
 
-@app.get("/ChainStore")
+@app.get("/ChainStore_read")
 def get_all_ChainStore(db: Session = Depends(get_db), limit: int = 10, page: int = 1):
     skip = (page - 1) * limit
     ChainStore = db.query(ChainStore).limit(limit).offset(skip).all()
     return {'status': 'success', 'results': len(ChainStore), 'ChainStore': ChainStore}
 
 
-@app.get("/product")
+@app.get("/product_read")
 def get_all_products(db: Session = Depends(get_db), limit: int = 10, page: int = 1):
     skip = (page - 1) * limit
     products = db.query(Product).limit(limit).offset(skip).all()
     return {'status': 'success', 'results': len(products), 'products': products}
 
 
-@app.get("/shelf")
+@app.get("/shelf_read")
 def get_all_shelves(db: Session = Depends(get_db), limit: int = 10, page: int = 1):
     skip = (page - 1) * limit
     shelfs = db.query(Shelf).limit(limit).offset(skip).all()
     return {'status': 'success', 'results': len(shelfs), 'shelfs': shelfs}
 
 
-@app.get("/visitor")
+@app.get("/visitor_read")
 def get_all_visitors(db: Session = Depends(get_db), limit: int = 10, page: int = 1):
     start = time.time()
 
@@ -68,7 +68,7 @@ def get_all_visitors(db: Session = Depends(get_db), limit: int = 10, page: int =
 
 # Create
 
-@app.post("/visitor", status_code=status.HTTP_201_CREATED)
+@app.post("/visitor_update", status_code=status.HTTP_201_CREATED)
 def create_visitor(payload: VisitorSchema, db: Session = Depends(get_db)):
     new_visitor = Visitor(**payload.dict())
     db.add(new_visitor)
@@ -77,7 +77,7 @@ def create_visitor(payload: VisitorSchema, db: Session = Depends(get_db)):
     return {"status": "success", "visitor": new_visitor}
 
 
-@app.post("/CameraVisitor", status_code=status.HTTP_201_CREATED)
+@app.post("/CameraVisitor_update", status_code=status.HTTP_201_CREATED)
 def create_CameraVisitor(payload: CameraVisitorSchema, db: Session = Depends(get_db)):
     new_CameraVisitor = CameraVisitor(**payload.dict())
     db.add(new_CameraVisitor)
@@ -86,7 +86,7 @@ def create_CameraVisitor(payload: CameraVisitorSchema, db: Session = Depends(get
     return {"status": "success", "CameraVisitor": new_CameraVisitor}
 
 
-@app.post("/ShelfProduct", status_code=status.HTTP_201_CREATED)
+@app.post("/ShelfProduct_update", status_code=status.HTTP_201_CREATED)
 def create_ShelfProduct(payload: ShelfProductSchema, db: Session = Depends(get_db)):
     new_ShelfProduct = ShelfProduct(**payload.dict())
     db.add(new_ShelfProduct)
@@ -95,7 +95,7 @@ def create_ShelfProduct(payload: ShelfProductSchema, db: Session = Depends(get_d
     return {"status": "success", "ShelfProduct": new_ShelfProduct}
 
 
-@app.post("/ChainStore", status_code=status.HTTP_201_CREATED)
+@app.post("/ChainStore_update", status_code=status.HTTP_201_CREATED)
 def create_ChainStore(payload: ChainStoreSchema, db: Session = Depends(get_db)):
     new_ChainStore = ChainStore(**payload.dict())
     db.add(new_ChainStore)
@@ -104,7 +104,7 @@ def create_ChainStore(payload: ChainStoreSchema, db: Session = Depends(get_db)):
     return {"status": "success", "ChainStore": new_ChainStore}
 
 
-@app.post("/camera", status_code=status.HTTP_201_CREATED)
+@app.post("/camera_update", status_code=status.HTTP_201_CREATED)
 def create_camera(payload: CameraSchema, db: Session = Depends(get_db)):
     new_camera = Camera(**payload.dict())
     db.add(new_camera)
@@ -113,7 +113,7 @@ def create_camera(payload: CameraSchema, db: Session = Depends(get_db)):
     return {"status": "success", "camera": new_camera}
 
 
-@app.post("/product", status_code=status.HTTP_201_CREATED)
+@app.post("/product_update", status_code=status.HTTP_201_CREATED)
 def create_visitor(payload: ProductSchema, db: Session = Depends(get_db)):
     new_product = Product(**payload.dict())
     db.add(new_product)
@@ -122,7 +122,7 @@ def create_visitor(payload: ProductSchema, db: Session = Depends(get_db)):
     return {"status": "success", "product": new_product}
 
 
-@app.post("/shelf", status_code=status.HTTP_201_CREATED)
+@app.post("/shelf_update", status_code=status.HTTP_201_CREATED)
 def create_visitor(payload: ShelfSchema, db: Session = Depends(get_db)):
     new_shelf = Shelf(**payload.dict())
     db.add(new_shelf)
@@ -265,6 +265,7 @@ def shelf_sum(db: Session = Depends(get_db), shelf_id: int = 1):
     for r in result:
         product_sum += r.price
     return {'status': 'success', 'shelf_sum': product_sum}
+
 
 
 if __name__ == "__main__":
