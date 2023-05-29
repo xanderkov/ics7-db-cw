@@ -65,7 +65,6 @@ class Visitor(BASE):
     location = Column(Text)
     view = Column(Text)
     detection = Column(Text)
-
 class Camera(BASE):
     __tablename__ = 'Camera'
     id = Column(Integer, Identity(always=True), primary_key=True)
@@ -77,7 +76,6 @@ class CameraVisitor(BASE):
     __tablename__ = 'CameraVisitor'
     id_vis = Column(Integer, ForeignKey('Visitor.id'), primary_key=True)
     id_cam = Column(Integer, ForeignKey('Camera.id'), primary_key=True)
-
 class Shelf(BASE):
     __tablename__ = 'Shelf'
     id = Column(Integer, Identity(always=True), primary_key=True)
@@ -96,12 +94,10 @@ class Product(BASE):
     weight = Column(Float)
     status = Column(Integer)
     price = Column(Integer)
-
 class ShelfProduct(BASE):
     __tablename__ = 'ShelfProduct'
     id_shelf = Column(Integer, ForeignKey('Shelf.id'), primary_key=True)
     id_product = Column(Integer, ForeignKey('Product.id'), primary_key=True)
-
 class ChainStore(BASE):
     __tablename__ = 'ChainStore'
     id = Column(Integer, Identity(always=True), primary_key=True)
@@ -127,6 +123,8 @@ EXECUTE FUNCTION check_location();
 \captionsetup{singlelinecheck = false, justification=centering}
 
 Для этого триггера была написана соответствующая функция.
+
+
 Код функции представлен в листинге \ref{trigger_func}.
 
 \captionsetup{singlelinecheck = false, justification=raggedright}
