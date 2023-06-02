@@ -32,18 +32,21 @@
 % Переопределение их отступов до и после для 1.5 интервала во всем документе
 \usepackage{titlesec}
 
+
+
 \titleformat{\section}[block]
-{\bfseries\normalsize\filcenter}{\thesection}{1em}{}
-\titlespacing\section{0pt}{1.5em}{1.5em}
+{\bfseries\normalsize\filcenter}{\thesection}{0em}{}
+\titlespacing\section{0pt}{0em}{0em}
 
 \titleformat{\subsection}[hang]
-{\bfseries\normalsize}{\thesubsection}{1em}{}
-\titlespacing\subsection{\parindent}{1.5em}{1.5em}
+{\bfseries\normalsize}{\thesubsection}{0em}{}
+\titlespacing\subsection{\parindent}{0em}{0em}
 
 
 \titleformat{\subsubsection}[hang]
-{\bfseries\normalsize}{\thesubsubsection}{1em}{}
-\titlespacing\subsubsection{\parindent}{1.5em}{1.5em}
+{\bfseries\normalsize}{\thesubsubsection}{0em}{}
+\titlespacing\subsubsection{\parindent}{0em}{0em}
+
 
 % Работа с изображениями и таблицами; переопределение названий по ГОСТу
 \usepackage{caption}
@@ -160,6 +163,11 @@
 \usepackage{pgfplots}
 \usepackage{totcount}
 \newtotcounter{citnum} %From the package documentation
-\def\oldbibitem{} \let\oldbibitem=\bibitem
-\def\bibitem{\stepcounter{citnum}\oldbibitem}
+
+
+
+\makeatletter
+\renewcommand\@biblabel[1]{#1.\hfill}
+\makeatother
+
 
