@@ -35,17 +35,15 @@
 
 
 \titleformat{\section}[block]
-{\bfseries\normalsize\filcenter}{\thesection}{0em}{}
-\titlespacing\section{0pt}{0em}{0em}
+{\bfseries\normalsize\filcenter}{\thesection}{1em}{}
 
 \titleformat{\subsection}[hang]
-{\bfseries\normalsize}{\thesubsection}{0em}{}
-\titlespacing\subsection{\parindent}{0em}{0em}
-
+{\bfseries\normalsize}{\thesubsection}{1em}{}
+\titlespacing\subsection{\parindent}{\parskip}{\parskip}
 
 \titleformat{\subsubsection}[hang]
-{\bfseries\normalsize}{\thesubsubsection}{0em}{}
-\titlespacing\subsubsection{\parindent}{0em}{0em}
+{\bfseries\normalsize}{\thesubsubsection}{1em}{}
+\titlespacing\subsubsection{\parindent}{\parskip}{\parskip}
 
 
 % Работа с изображениями и таблицами; переопределение названий по ГОСТу
@@ -164,10 +162,8 @@
 \usepackage{totcount}
 \newtotcounter{citnum} %From the package documentation
 
-
-
 \makeatletter
-\renewcommand\@biblabel[1]{#1.\hfill}
+\renewcommand\@biblabel[1]{#1.}
 \makeatother
 
 
